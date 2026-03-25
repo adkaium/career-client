@@ -1,24 +1,26 @@
-
-import React, {  useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import Baner from "./Baner";
 import HotJobs from "./HotJobs";
+import CategorySection from "./CategorySection";
 
 const Home = () => {
-    const [jobsPromise, setJobsPromise]=useState([])
-//   const jobsPromise =await fetch("http://localhost:3000/jobs").then((res) =>
-//     res.json(),
-//   );
-    useEffect(()=>{
-        fetch("http://localhost:3000/jobs")
-        .then((res)=>res.json())
-       .then((data)=>{
-        setJobsPromise(data)
-       })
-    },[])
+  const [jobs, setJobs] = useState([]);
+  //   const jobsPromise =await fetch("http://localhost:3000/jobs").then((res) =>
+  //     res.json(),
+  //   );
+  console.log(jobs);
+  useEffect(() => {
+    fetch("http://localhost:3000/jobs")
+      .then((res) => res.json())
+      .then((data) => {
+        setJobs(data);
+      });
+  }, []);
   return (
     <div>
       <Baner></Baner>
-     <HotJobs jobsPromise={jobsPromise}></HotJobs>
+      <CategorySection></CategorySection>
+      <HotJobs jobs={jobs}></HotJobs>
     </div>
   );
 };

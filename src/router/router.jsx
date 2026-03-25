@@ -7,39 +7,77 @@ import JobDetails from "../pages/JobDetails/JobDetails";
 import PrivetRoute from "../Routers/PrivetRoute";
 import ApplyJob from "../pages/ApplyJobs/ApplyJob";
 import MyApplications from "../pages/MyApplications/MyApplications";
+import AddJob from "../pages/AddJob/AddJob";
+import MyPostedJob from "../pages/MyPostedJob/MyPostedJob";
+import ViewApplicant from "../pages/VeiwApplicant/ViewApplicant";
 
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    Component:RootLayOut,
-    children:[
-        {
-            index:true,
-            Component: Home,
-        },
-        {
-          path:'/jobs/:id',
-          Component:JobDetails,
-          loader:({params})=>fetch(`http://localhost:3000/jobs/${params.id}`),
-        },
-        {
-          path:'/apply/:id',
-          element:<PrivetRoute><ApplyJob></ApplyJob></PrivetRoute>,
-        },
-        {
-          path:'/appliedJobs',
-          element:<PrivetRoute><MyApplications></MyApplications></PrivetRoute>
-        }
-        ,
-        {
-          path:'/register',
-          Component:Register,
-        },
-        {
-          path:'/signIn',
-          Component:SignIn,
-        }
-    ]
+    Component: RootLayOut,
+    children: [
+      {
+        index: true,
+        Component: Home,
+      },
+      {
+        path: "/jobs/:id",
+        Component: JobDetails,
+        loader: ({params}) => fetch(`http://localhost:3000/jobs/${params.id}`),
+      },
+      {
+        path: "/apply/:id",
+        element: (
+          <PrivetRoute>
+            <ApplyJob></ApplyJob>
+          </PrivetRoute>
+        ),
+      },
+      {
+        path: "/appliedJobs",
+        element: (
+          <PrivetRoute>
+            <MyApplications></MyApplications>
+          </PrivetRoute>
+        ),
+      },
+      {
+        path: "/addJob",
+        element: (
+          <PrivetRoute>
+            <AddJob></AddJob>
+          </PrivetRoute>
+        ),
+      },
+      {
+        path: "/myPostedJob",
+        element: (
+          <PrivetRoute>
+            <MyPostedJob></MyPostedJob>
+          </PrivetRoute>
+        ),
+      },
+      {
+        path: "/applications/:job_id",
+        element: (
+          <PrivetRoute>
+            <ViewApplicant></ViewApplicant>
+          </PrivetRoute>
+        ),
+        loader: ({params}) =>
+          fetch(
+            `http://localhost:3000/applications/job/${params.job_id}`,
+          ),
+      },
+      {
+        path: "/register",
+        Component: Register,
+      },
+      {
+        path: "/signIn",
+        Component: SignIn,
+      },
+    ],
   },
 ]);

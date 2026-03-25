@@ -5,6 +5,7 @@ import {AuthContexts} from "../../contexts/AuthContexts/AuthContexts";
 
 const Navber = () => {
   const {user, signOutUser} = use(AuthContexts);
+  console.log(user);
   //  const [sticky, setSticky] = useState(false);
 
   //  useEffect(() => {
@@ -44,7 +45,13 @@ const Navber = () => {
       <li>
         <NavLink to="/contact">Contact</NavLink>
       </li>
+      {/* candidate */}
       {user && <li><NavLink to="/appliedJobs">My Applications</NavLink></li>}
+
+
+      {/* recruiter */}
+      {user && <li><NavLink to="/addJob">Add Job</NavLink></li>}
+      {user && <li><NavLink to="/myPostedJob">My Posted Job</NavLink></li>}
     </>
   );
   return (
@@ -87,6 +94,7 @@ const Navber = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
+        {user  && <span className="mr-4">{user.displayName || user.email}</span>}
         {user ? (
           <button onClick={handelSignOut} className="btn btn-ghost">
             Sign Out

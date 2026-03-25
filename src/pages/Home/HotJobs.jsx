@@ -1,15 +1,16 @@
-
 import React from "react";
 import JobCard from "../Shared/JobCard";
+import JobsCategoryTabs from "./JobsCategoryTab";
 
-const HotJobs = ({jobsPromise}) => {
-  const jobs = jobsPromise;
+const HotJobs = ({jobs}) => {
   console.log(jobs);
   return (
     <>
-       <h2 className="text-4xl text-center p-4">Hot Jobs Of The Day</h2>
-      <div className="grid gap-4 grid-cols-1 lg:grid-cols-3 md:grid-cols-2">
-        {jobs.map(job=><JobCard key={job._id} job={job}></JobCard>)}
+      <JobsCategoryTabs></JobsCategoryTabs>
+      <div className="grid gap-1.5 grid-cols-1 lg:grid-cols-4 md:grid-cols-2 mt-2">
+        {jobs.map((job) => (
+          <JobCard key={job._id} job={job}></JobCard>
+        ))}
       </div>
     </>
   );
