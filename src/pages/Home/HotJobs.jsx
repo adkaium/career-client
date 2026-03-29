@@ -7,7 +7,7 @@ const HotJobs = ({jobs}) => {
   return (
     <>
       <JobsCategoryTabs></JobsCategoryTabs>
-      <div className="grid gap-1.5 grid-cols-1 lg:grid-cols-4 md:grid-cols-2 mt-2">
+      <div className="flex  flex-4 flex-wrap justify-center flex- gap-4 ">
         {jobs.map((job) => (
           <JobCard key={job._id} job={job}></JobCard>
         ))}

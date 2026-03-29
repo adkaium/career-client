@@ -21,9 +21,9 @@ const CategorySection = ({setSelectedCategory}) => {
   return (
     <div className="py-10 px-4">
       <h2 className="text-4xl font-bold text-center mb-2">
-        Browse by category
+        <span className="bg-blue-600 p-2 center text-white rounded-2xl">Browse</span> by category
       </h2>
-      <p className="text-center text-gray-500 mb-8">
+      <p className="text-center text-gray-500 mb-8 mt-4">
         Find the job that’s perfect for you
       </p>
 
@@ -44,7 +44,7 @@ const CategorySection = ({setSelectedCategory}) => {
               onClick={() => setSelectedCategory(cat.name)}
               className="border rounded-xl p-6 text-center cursor-pointer hover:shadow-lg transition"
             >
-              <div className="text-4xl mb-3">{cat.icon}</div>
+              <div className="text-2xl mb-3">{cat.icon}</div>
               <h3 className="font-semibold">{cat.name}</h3>
               <p className="text-sm text-gray-500">
                 {cat.count} Jobs Available

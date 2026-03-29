@@ -7,7 +7,7 @@ const MyPostedJob = () => {
     const {user} = useAuth()
     const {jobsPromise} = useJobApi()
     return (
-      <div>
+      <div className='mt-10'>
         <h1>this is posted job</h1>
         <Suspense fallback={<div>Loading...</div>}>
           <JobLists jobsPromise={jobsPromise(user.email)}></JobLists>

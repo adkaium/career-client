@@ -13,15 +13,15 @@ const AddJob = () => {
     const data = Object.fromEntries(formData.entries());
     const {min, max, currency, ...newJob} = data;
     newJob.salaryRange = {min, max, currency};
-    
-    // process requirements 
+
+    // process requirements
     const newRequirement = newJob.requirements.split(",");
     const lastRequirement = newRequirement
       .map((req) => req.trim())
       .filter((req) => req);
     newJob.requirements = lastRequirement;
 
-    // process responsibilities 
+    // process responsibilities
     const newRespos = newJob.responsibilities.split(",");
     const lastRespos = newRespos.map((res) => res.trim()).filter((res) => res);
     newJob.responsibilities = lastRespos;
@@ -34,14 +34,14 @@ const AddJob = () => {
       .post("http://localhost:3000/jobs", newJob)
       .then((res) => {
         console.log(res.data);
-        if(res.data.insertedId){
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "Your application has been submitted",
-              showConfirmButton: false,
-              timer: 1500,
-            });
+        if (res.data.insertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your application has been submitted",
+            showConfirmButton: false,
+            timer: 1500,
+          });
         }
       })
       .catch((err) => {
@@ -50,7 +50,8 @@ const AddJob = () => {
   };
 
   return (
-    <div>
+    <div className="mt-16 bg-base-200 rounded-lg">
+      <h1 className="text-center bg-zinc-700 text-white">Add Job</h1>
       <form onSubmit={formHandel}>
         <div className=" flex flex-col-3 flex-wrap justify-center gap-4">
           <div>
